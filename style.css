@@ -1,0 +1,43 @@
+.title
+{
+  text-align: center;
+}
+
+.wrapper
+{
+  margin: 5vw;
+  text-align: center;
+}
+
+.input
+{
+  margin: 1vw;
+}
+
+.button
+{
+  margin: 1vw;
+}
+
+.result
+{
+  margin-right: 35vw;
+  margin-top: 4vw;
+  text-align: right;
+}
+
+.result a
+{
+  line-height: 5vw;
+  font-size: 3vw;
+}
+
+.red
+{
+  color: red;
+}
+
+.green
+{
+  color: #008200;
+}

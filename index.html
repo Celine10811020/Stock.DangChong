@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+  <title>當沖計算機</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+  <div class="title">
+    <h1> 當沖計算機 </h1>
+  </div>
+  <div class="wrapper">
+    <div class="inputDiv">
+      <input class="input" id="inputHigh" placeholder="前一日最高價"></input>
+      <input class="input" id="inputLow" placeholder="前一日最低價"></input>
+      <input class="input" id="inputEnd" placeholder="前一日收盤價"></input>
+    </div>
+    <div class="buttonDiv">
+      <button class="button" id="calculate"> 計算 </button>
+    </div>
+    <div class="result">
+      <a class="red" id="Buy"> </a>
+      <br>
+      <a class="green" id="Sell"> </a>
+      <br>
+      <br>
+      <a class="red" id="BuyBuy"> </a>
+      <br>
+      <a class="green" id="SellSell"> </a>
+    </div>
+  </div>
+</body>
+
+<script src="declare.js"></script>
+<script src="main.js"></script>
+
+</html>
