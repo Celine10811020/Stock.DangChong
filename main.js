@@ -4,11 +4,11 @@ function calculate()
   inputLow = document.getElementById("inputLow").value;
   inputEnd = document.getElementById("inputEnd").value;
 
-  cdp = (parseInt(inputHigh) + parseInt(inputLow) + 2*parseInt(inputEnd)) / 4;
-  buy = 2*cdp - parseInt(inputHigh);
-  sell = 2*cdp - parseInt(inputLow);
-  buyBuy = cdp + (parseInt(inputHigh)-parseInt(inputLow));
-  sellSell = cdp - (parseInt(inputHigh)-parseInt(inputLow));
+  cdp = (parseFloat(inputHigh) + parseFloat(inputLow) + 2*parseFloat(inputEnd)) / 4;
+  buy = 2*cdp - parseFloat(inputHigh);
+  sell = 2*cdp - parseFloat(inputLow);
+  buyBuy = cdp + (parseFloat(inputHigh)-parseFloat(inputLow));
+  sellSell = cdp - (parseFloat(inputHigh)-parseFloat(inputLow));
 
   console.log(inputHigh);
   console.log(inputLow);
