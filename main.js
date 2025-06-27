@@ -1,162 +1,66 @@
-function calculate()
-{
-  inputHigh = document.getElementById("inputHigh").value;
-  inputLow = document.getElementById("inputLow").value;
-  inputEnd = document.getElementById("inputEnd").value;
+function roundPrice(price, isBuy = true) {
+  let tick;
 
-  cdp = (parseFloat(inputHigh) + parseFloat(inputLow) + 2*parseFloat(inputEnd)) / 4;
-  buy = 2*cdp - parseFloat(inputHigh);
-  sell = 2*cdp - parseFloat(inputLow);
-  buyBuy = cdp + (parseFloat(inputHigh)-parseFloat(inputLow));
-  sellSell = cdp - (parseFloat(inputHigh)-parseFloat(inputLow));
+  if (price < 10) tick = 0.01;
+  else if (price < 50) tick = 0.05;
+  else if (price < 100) tick = 0.1;
+  else if (price < 500) tick = 0.5;
+  else if (price < 1000) tick = 1;
+  else tick = 5;
 
-  console.log(inputHigh);
-  console.log(inputLow);
-  console.log(inputEnd);
-  console.log(cdp);
-  console.log(buy);
-  console.log(sell);
-  console.log(buyBuy);
-  console.log(sellSell);
+  let rounded = isBuy
+    ? Math.floor(price / tick) * tick
+    : Math.ceil(price / tick) * tick;
 
-  if(buy<10 && sell<10)
-  {
-    buy = ((Math.floor((Math.floor(buy*100)*100)))/100)/100;
-    sell = ((Math.floor((Math.ceil(sell*100)*100)))/100)/100;
-    document.getElementById("Buy").innerHTML = "買進價  " + buy;
-    document.getElementById("Sell").innerHTML = "賣出價  " + sell;
-  }
-  else if(buy>10 && sell<10)
-  {
-    buy = ((Math.floor(((Math.floor(buy/0.05)*0.05)*100)*100))/100)/100;
-    sell = ((Math.floor((Math.ceil(sell*100)*100)))/100)/100;
-    document.getElementById("Buy").innerHTML = "買進價  " + buy;
-    document.getElementById("Sell").innerHTML = "賣出價  " + sell;
-  }
-  else if(buy>=10 && sell>=10 && buy<=50 && sell<50)
-  {
-    buy = ((Math.floor(((Math.floor(buy/0.05)*0.05)*100)*100))/100)/100;
-    sell = ((Math.floor(((Math.ceil(sell/0.05)*0.05)*100)*100))/100)/100;
-    document.getElementById("Buy").innerHTML = "買進價  " + buy;
-    document.getElementById("Sell").innerHTML = "賣出價  " + sell;
-  }
-  else if(buy>=50 && sell>=50 && buy<100 && sell<100)
-  {
-    buy = ((Math.floor(((Math.floor(buy/0.1)*0.1)*100)*100))/100)/100;
-    sell = ((Math.floor(((Math.ceil(sell/0.1)*0.1)*100)*100))/100)/100;
-    document.getElementById("Buy").innerHTML = "買進價  " + buy;
-    document.getElementById("Sell").innerHTML = "賣出價  " + sell;
-  }
-  else if(buy>=50 && sell<50 )
-  {
-    buy = ((Math.floor(((Math.floor(buy/0.1)*0.1)*100)*100))/100)/100;
-    sell =(Math.floor((Math.ceil(sell/0.05)*0.05)*100))/100;
-    document.getElementById("Buy").innerHTML = "買進價  " + buy;
-    document.getElementById("Sell").innerHTML = "賣出價  " + sell;
-  }
-  else if(buy>=100 && sell>=100 && buy<1000 && sell<1000)
-  {
-    buy = ((Math.floor(((Math.floor(buy/0.5)*0.5)*100)*100))/100)/100;
-    sell = ((Math.floor(((Math.ceil(sell/0.5)*0.5)*100)*100))/100)/100;
-    document.getElementById("Buy").innerHTML = "買進價  " + buy;
-    document.getElementById("Sell").innerHTML = "賣出價  " + sell;
-  }
-  else if(buy>=100 && sell<100)
-  {
-    buy = ((Math.floor(((Math.floor(buy/0.5)*0.5)*100)*100))/100)/100;
-    sell = ((Math.floor(((Math.ceil(sell/0.1)*0.1)*100)*100))/100)/100;
-    document.getElementById("Buy").innerHTML = "買進價  " + buy;
-    document.getElementById("Sell").innerHTML = "賣出價  " + sell;
-  }
-  else if(buy>=1000 && sell<=1000)
-  {
-    buy = ((Math.floor(((Math.floor(buy/5)*5)*100)*100))/100)/100;
-    sell = ((Math.floor(((Math.ceil(sell/5)*5)*100)*100))/100)/100;
-    document.getElementById("Buy").innerHTML = "買進價  " + buy;
-    document.getElementById("Sell").innerHTML = "賣出價  " + sell;
-  }
-  else if(buy>=1000 && sell>=1000)
-  {
-    buy = ((Math.floor(((Math.floor(buy/5)*5)*100)*100))/100)/100;
-    sell = ((Math.floor(((Math.ceil(sell/5)*5)*100)*100))/100)/100;
-    document.getElementById("Buy").innerHTML = "買進價  " + buy;
-    document.getElementById("Sell").innerHTML = "賣出價  " + sell;
-  }
-
-  if(buyBuy<10 && sellSell<10)
-  {
-    buyBuy = ((Math.floor((Math.floor(buyBuy*100)*100)))/100)/100;
-    sellSell = ((Math.floor((Math.ceil(sellSell*100)*100)))/100)/100;
-    document.getElementById("BuyBuy").innerHTML = "追價買進  " + buyBuy;
-    document.getElementById("SellSell").innerHTML = "追價賣出  " + sellSell;
-  }
-  else if(buyBuy>10 && sellSell<10)
-  {
-    buyBuy = ((Math.floor(((Math.floor(buyBuy/0.05)*0.05)*100)*100))/100)/100;
-    sellSell = ((Math.floor((Math.ceil(sellSell*100)*100)))/100)/100;
-    document.getElementById("BuyBuy").innerHTML = "追價買進  " + buyBuy;
-    document.getElementById("SellSell").innerHTML = "追價賣出  " + sellSell;
-  }
-  else if(buyBuy>=10 && sellSell>=10 && buyBuy<=50 && sellSell<50)
-  {
-    buyBuy = ((Math.floor(((Math.floor(buyBuy/0.05)*0.05)*100)*100))/100)/100;
-    sellSell = ((Math.floor(((Math.ceil(sellSell/0.05)*0.05)*100)*100))/100)/100;
-    document.getElementById("BuyBuy").innerHTML = "追價買進  " + buyBuy;
-    document.getElementById("SellSell").innerHTML = "追價賣出  " + sellSell;
-  }
-  else if(buyBuy>=50 && sellSell>=50 && buyBuy<100 && sellSell<100)
-  {
-    buyBuy = ((Math.floor(((Math.floor(buyBuy/0.1)*0.1)*100)*100))/100)/100;
-    sellSell = ((Math.floor(((Math.ceil(sellSell/0.1)*0.1)*100)*100))/100)/100;
-    document.getElementById("BuyBuy").innerHTML = "追價買進  " + buyBuy;
-    document.getElementById("SellSell").innerHTML = "追價賣出  " + sellSell;
-  }
-  else if(buyBuy>=50 && sellSell<50 )
-  {
-    buyBuy = ((Math.floor(((Math.floor(buyBuy/0.1)*0.1)*100)*100))/100)/100;
-    sellSell =(Math.floor((Math.ceil(sellSell/0.05)*0.05)*100))/100;
-    document.getElementById("BuyBuy").innerHTML = "追價買進  " + buyBuy;
-    document.getElementById("SellSell").innerHTML = "追價賣出  " + sellSell;
-  }
-  else if(buyBuy>=100 && sellSell>=100 && buyBuy<1000 && sellSell<1000)
-  {
-    buyBuy = ((Math.floor(((Math.floor(buyBuy/0.5)*0.5)*100)*100))/100)/100;
-    sellSell = ((Math.floor(((Math.ceil(sellSell/0.5)*0.5)*100)*100))/100)/100;
-    document.getElementById("BuyBuy").innerHTML = "追價買進  " + buyBuy;
-    document.getElementById("SellSell").innerHTML = "追價賣出  " + sellSell;
-  }
-  else if(buyBuy>=100 && sellSell<100)
-  {
-    buyBuy = ((Math.floor(((Math.floor(buyBuy/0.5)*0.5)*100)*100))/100)/100;
-    sellSell = ((Math.floor(((Math.ceil(sellSell/0.1)*0.1)*100)*100))/100)/100;
-    document.getElementById("BuyBuy").innerHTML = "追價買進  " + buyBuy;
-    document.getElementById("SellSell").innerHTML = "追價賣出  " + sellSell;
-  }
-  else if(buyBuy>=1000 && sellSell<=1000)
-  {
-    buyBuy = ((Math.floor(((Math.floor(buyBuy/5)*5)*100)*100))/100)/100;
-    sellSell = ((Math.floor(((Math.ceil(sellSell/5)*5)*100)*100))/100)/100;
-    document.getElementById("BuyBuy").innerHTML = "追價買進  " + buyBuy;
-    document.getElementById("SellSell").innerHTML = "追價賣出  " + sellSell;
-  }
-  else if(buyBuy>=1000 && sellSell>=1000)
-  {
-    buyBuy = ((Math.floor(((Math.floor(buyBuy/5)*5)*100)*100))/100)/100;
-    sellSell = ((Math.floor(((Math.ceil(sellSell/5)*5)*100)*100))/100)/100;
-    document.getElementById("BuyBuy").innerHTML = "追價買進  " + buyBuy;
-    document.getElementById("SellSell").innerHTML = "追價賣出  " + sellSell;
-  }
+  return {
+    value: parseFloat(rounded.toFixed(5)),
+    tick: tick
+  };
 }
 
-function clearHigh()
-{
-   document.getElementById('inputHigh').value = "";
+function formatPrice(priceObj) {
+  const { value, tick } = priceObj;
+
+  if (tick >= 5 || tick === 1) return value.toFixed(0);      // 整數跳動
+  if (tick >= 0.1) return value.toFixed(1);                  // 顯示一位小數
+  return value.toFixed(2);                                   // 顯示兩位小數
 }
-function clearLow()
-{
-   document.getElementById('inputLow').value = "";
+
+function calculate() {
+  let inputHigh = parseFloat(document.getElementById("inputHigh").value);
+  let inputLow = parseFloat(document.getElementById("inputLow").value);
+  let inputEnd = parseFloat(document.getElementById("inputEnd").value);
+
+  if (isNaN(inputHigh) || isNaN(inputLow) || isNaN(inputEnd)) {
+    alert("請輸入正確的數值！");
+    return;
+  }
+
+  let cdp = (inputHigh + inputLow + 2 * inputEnd) / 4;
+  let buy = 2 * cdp - inputHigh;
+  let sell = 2 * cdp - inputLow;
+  let buyBuy = cdp + (inputHigh - inputLow);
+  let sellSell = cdp - (inputHigh - inputLow);
+
+  // 四檔價位處理（含 tick 值）
+  let roundedBuy = roundPrice(buy, true);
+  let roundedSell = roundPrice(sell, false);
+  let roundedBuyBuy = roundPrice(buyBuy, true);
+  let roundedSellSell = roundPrice(sellSell, false);
+
+  // 顯示結果（根據 tick 精度決定格式）
+  document.getElementById("Buy").innerHTML = "買進價  " + formatPrice(roundedBuy);
+  document.getElementById("Sell").innerHTML = "賣出價  " + formatPrice(roundedSell);
+  document.getElementById("BuyBuy").innerHTML = "追價買進  " + formatPrice(roundedBuyBuy);
+  document.getElementById("SellSell").innerHTML = "追價賣出  " + formatPrice(roundedSellSell);
 }
-function clearEnd()
-{
-   document.getElementById('inputEnd').value = "";
+
+function clearHigh() {
+  document.getElementById("inputHigh").value = "";
+}
+function clearLow() {
+  document.getElementById("inputLow").value = "";
+}
+function clearEnd() {
+  document.getElementById("inputEnd").value = "";
 }
